@@ -22,6 +22,7 @@ CREATE OR REPLACE VIEW themefail as
 
 -- Create a view of the percentage of failed calls per day.
 CREATE OR REPLACE VIEW strengthcall as
-    SELECT round((themefail .fail*1.0/themetot.tot)*100, 1)
-    as misscall, themefail .date
-    WHERE themefail .date=themetot.date;
+    SELECT round((lgntf.fail*1.0/lgntt.tot)*100, 1)
+    as misscall, lgntf.date
+	FROM themefail as lgntf, themetot as lgntt
+    WHERE lgntf.date=lgntt.date;
